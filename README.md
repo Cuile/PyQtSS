@@ -1,6 +1,6 @@
 # PyQtSS
 
-用 PySide6 写的 ss-rust 客户端代理
+用 PySide6 写的 ss-rust 客户端
 
 ## 组件
 
