@@ -10,7 +10,7 @@
 
 ## 组件
 
-- Python: 3.12
+- Python: 3.11
 - Shadowsocks-rust: 1.17.0
 - v2ray-plugin: 1.3.2
 - privoxy: 3.0.34
