@@ -1,6 +1,6 @@
 # PyQtSS
 
-用 PySide6 写的 ss-rust 客户端。
+用 PySide6 写的 ss-rust GUI客户端。
 
 主要功能使用第三方的二进制文件，Python只完成设置操作。
 这样设计架构，出于以下几点考虑：
