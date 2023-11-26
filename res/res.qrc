@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC>
+    <qresource prefix="icons">
+        <file alias="sysTrayIcon">icons/Shadowsocks-Logo.svg.png</file>
+        <file alias="sysTrayIcon.svg">icons/Shadowsocks-Logo.svg</file>
+    </qresource>
+</RCC>
