@@ -1,17 +1,22 @@
-from PySide6.QtWidgets import QSystemTrayIcon, QMenu, QWidget
+from PySide6.QtWidgets import QSystemTrayIcon, QMenu, QWidget, QApplication, QMainWindow
 from PySide6.QtGui import QIcon, QAction
 import res_rc  # 由pyside6-rcc生成的资源文件  # noqa: F401
 
 
 class SysTrayWidget(QWidget):
-    __tray_icon: object = None
-    __tray_menu: object = None
+    __tray_icon: QSystemTrayIcon
+    __tray_menu: QMenu
     __tray_menu_action: list = []
 
-    def __del__(self):
+    def __del__(self) -> None:
         pass
 
-    def __init__(self, ui: object = None, app: object = None, window: object = None):
+    def __init__(
+        self,
+        app: QApplication,
+        window: QMainWindow,
+        ui: object = None,
+    ) -> None:
         # 必须调用，否则信号系统无法启用
         QWidget.__init__(self)
 
@@ -46,20 +51,22 @@ class SysTrayWidget(QWidget):
         # 默认隐藏界面
         self.hide_userinterface()
 
-    def add_tray_menu_action(self, text: str = "empty", callback: object = None):
+    def add_tray_menu_action(
+        self, text: str = "empty", callback: object = None
+    ) -> None:
         a = QAction(text, self)
         a.triggered.connect(callback)
         self.__tray_menu.addAction(a)
         self.__tray_menu_action.append(a)
 
-    def quit(self):
+    def quit(self) -> None:
         # 真正的退出
         self.__app.exit()
 
-    def show_userinterface(self):
+    def show_userinterface(self) -> None:
         # self.__window.show()
         pass
 
-    def hide_userinterface(self):
+    def hide_userinterface(self) -> None:
         # self.__window.hide()
         pass

@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     # 创建系统托盘项目
     # tray = MySysTrayWidget(app=app, window=win, ui=ui)
-    tray = SysTrayWidget(app=app)
+    tray = SysTrayWidget(app=app, window=QMainWindow())
 
     # 显示窗口
     # win.show()
