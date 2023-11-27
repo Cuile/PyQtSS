@@ -33,7 +33,16 @@ class SysTrayWidget(QWidget):
 
         # 创建托盘的右键菜单
         self.__tray_menu = QMenu(self)
-        self.add_tray_menu_action("显示主界面", self.show_userinterface)
+        self.add_tray_menu_action("主界面", self.show_userinterface)
+        self.__tray_menu.addSeparator()
+        self.add_tray_menu_action("网络直通模式", self.show_userinterface)
+        self.add_tray_menu_action("软件PAC模式", self.show_userinterface)
+        self.add_tray_menu_action("系统PAC模式", self.show_userinterface)
+        self.add_tray_menu_action("全局代理模式", self.show_userinterface)
+        self.__tray_menu.addSeparator()
+        self.add_tray_menu_action("查看日志", self.show_userinterface)
+        self.add_tray_menu_action("帮助", self.show_userinterface)
+        self.add_tray_menu_action("关于", self.show_userinterface)
         self.__tray_menu.addSeparator()
         self.add_tray_menu_action("退出", self.quit)
         # 把tpMenu设定为托盘的右键菜单
