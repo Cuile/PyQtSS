@@ -35,6 +35,7 @@ class SysTrayWidget(QWidget):
         self.__tray_menu = QMenu(self)
         self.add_tray_menu_action("主界面", self.show_userinterface)
         self.__tray_menu.addSeparator()
+        self.add_tray_menu_action("关闭代理模式", self.show_userinterface)
         self.add_tray_menu_action("网络直通模式", self.show_userinterface)
         self.add_tray_menu_action("软件PAC模式", self.show_userinterface)
         self.add_tray_menu_action("系统PAC模式", self.show_userinterface)
