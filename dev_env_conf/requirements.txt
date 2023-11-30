@@ -7,3 +7,4 @@ shiboken6==6.6.0
 supervisor-win==4.7.0
 setuptools==69.0.2
 Nuitka==1.9.2
+dynaconf==3.2.4

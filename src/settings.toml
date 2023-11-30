@@ -1,0 +1,19 @@
+[log]
+path = '.\log'
+
+[conf]
+path = '.\conf'
+
+[supervisor]
+path = '.\'
+bin = "supervisord"
+cli = "supervisord -c"
+conf = "supervisor.ini"
+
+[privoxy]
+path = '.\bin\privoxy'
+bin = "privoxy.exe"
+
+[ss-rust]
+path = '.\bin\ss-rust'
+bin = "sslocal.exe"
