@@ -1,5 +1,7 @@
 from config import settings as set
 from PySide6.QtCore import QProcess
+# 在调试里看系统路径
+# import sys, os.path
 
 
 # 主程守护进程
