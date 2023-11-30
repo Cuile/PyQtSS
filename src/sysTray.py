@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QSystemTrayIcon, QMenu, QWidget, QApplication, QMainWindow
 from PySide6.QtGui import QIcon, QAction
-import res_rc  # 由pyside6-rcc生成的资源文件  # noqa: F401
+from resources import res_rc  # 由pyside6-rcc生成的资源文件  # noqa: F401
 
 
 # 系统托盘
