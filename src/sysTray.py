@@ -3,6 +3,7 @@ from PySide6.QtGui import QIcon, QAction
 import res_rc  # 由pyside6-rcc生成的资源文件  # noqa: F401
 
 
+# 系统托盘
 class SysTrayWidget(QWidget):
     __tray_icon: QSystemTrayIcon
     __tray_menu: QMenu

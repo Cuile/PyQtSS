@@ -1,10 +1,8 @@
 import sys
-import subprocess
-import os.path
 from PySide6.QtWidgets import QApplication, QMainWindow
-
-# import ui_untitled
 from sysTray import SysTrayWidget
+from daemon import supervisor
+# import ui_untitled
 
 
 class MainWindow(QMainWindow):
@@ -30,10 +28,7 @@ if __name__ == "__main__":
     # 创建系统托盘项目
     # tray = MySysTrayWidget(app=app, window=win, ui=ui)
     tray = SysTrayWidget(app=app, window=QMainWindow())
-
-    conf = os.path.abspath(".\\conf\\supervisor.conf")
-    cli = "supervisord -c "
-    subprocess.run(cli + conf)
+    d = supervisor()
 
     # 显示窗口
     # win.show()
