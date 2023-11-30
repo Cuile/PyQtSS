@@ -1,3 +1,4 @@
 privoxy = 3.0.34
 ss-rust = 1.17.0
 v2ray-plugin = 
+nginx = 1.24.0
