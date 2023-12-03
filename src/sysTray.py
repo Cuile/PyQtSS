@@ -57,7 +57,7 @@ class SysTrayWidget(QWidget):
         # self.__ui.pushButton.clicked.connect(self.hide_userinterface)
 
         # 默认隐藏界面
-        self.action_hide_userinterface()
+        # self.action_hide_userinterface()
 
         # 启动守护进程
         daemon = supervisor()
