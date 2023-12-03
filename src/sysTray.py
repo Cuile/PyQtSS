@@ -10,9 +10,6 @@ class SysTrayWidget(QWidget):
     __tray_menu: QMenu
     __tray_menu_action: list = []
 
-    def __del__(self) -> None:
-        pass
-
     def __init__(
         self,
         app: QApplication,
@@ -35,19 +32,18 @@ class SysTrayWidget(QWidget):
 
         # 创建托盘的右键菜单
         self.__tray_menu = QMenu(self)
-        self.add_tray_menu_action("主界面", self.show_userinterface)
+        self.add_tray_menu_action("主界面", self.action_show_userinterface)
         self.__tray_menu.addSeparator()
-        self.add_tray_menu_action("关闭代理模式", self.show_userinterface)
-        self.add_tray_menu_action("网络直通模式", self.show_userinterface)
-        self.add_tray_menu_action("软件PAC模式", self.software_pac_proxy)
-        self.add_tray_menu_action("系统PAC模式", self.show_userinterface)
-        self.add_tray_menu_action("全局代理模式", self.show_userinterface)
+        self.add_tray_menu_action("关闭代理模式", self.action_close_proxy)
+        self.add_tray_menu_action("软件PAC模式", self.action_software_pac_proxy)
+        self.add_tray_menu_action("系统PAC模式", self.action_system_pac_proxy)
+        self.add_tray_menu_action("全局代理模式", self.action_global_proxy)
         self.__tray_menu.addSeparator()
-        self.add_tray_menu_action("查看日志", self.show_userinterface)
-        self.add_tray_menu_action("帮助", self.show_userinterface)
-        self.add_tray_menu_action("关于", self.show_userinterface)
+        self.add_tray_menu_action("查看日志", self.action_show_log)
+        self.add_tray_menu_action("帮助", self.action_show_help)
+        self.add_tray_menu_action("关于", self.action_show_about)
         self.__tray_menu.addSeparator()
-        self.add_tray_menu_action("退出", self.quit)
+        self.add_tray_menu_action("退出", self.action_quit)
         # 把tpMenu设定为托盘的右键菜单
         self.__tray_icon.setContextMenu(self.__tray_menu)
 
@@ -61,8 +57,9 @@ class SysTrayWidget(QWidget):
         # self.__ui.pushButton.clicked.connect(self.hide_userinterface)
 
         # 默认隐藏界面
-        self.hide_userinterface()
+        self.action_hide_userinterface()
 
+        # 启动守护进程
         daemon = supervisor()
         daemon.start()
         # xml-rpc
@@ -76,22 +73,40 @@ class SysTrayWidget(QWidget):
         self.__tray_menu.addAction(a)
         self.__tray_menu_action.append(a)
 
-    def quit(self) -> None:
+    def action_show_userinterface(self) -> None:
+        # self.__window.show()
+        pass
+
+    def action_hide_userinterface(self) -> None:
+        # self.__window.hide()
+        pass
+
+    def action_close_proxy(self) -> None:
+        pass
+
+    def action_software_pac_proxy(self) -> None:
+        # 启动所有进程
+        self.__daemon.rpc.supervisor.startAllProcesses(True)
+
+    def action_system_pac_proxy(self) -> None:
+        pass
+
+    def action_global_proxy(self) -> None:
+        pass
+
+    def action_show_log(self) -> None:
+        pass
+
+    def action_show_help(self) -> None:
+        pass
+
+    def action_show_about(self) -> None:
+        pass
+
+    def action_quit(self) -> None:
         # 关闭所有进程
         self.__daemon.rpc.supervisor.stopAllProcesses(True)
         # 关闭守护进程
         self.__daemon.rpc.supervisor.shutdown()
         # 真正的退出
         self.__app.exit()
-
-    def software_pac_proxy(self) -> None:
-        # 启动所有进程
-        self.__daemon.rpc.supervisor.startAllProcesses(True)
-
-    def show_userinterface(self) -> None:
-        # self.__window.show()
-        pass
-
-    def hide_userinterface(self) -> None:
-        # self.__window.hide()
-        pass
