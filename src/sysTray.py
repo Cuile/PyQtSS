@@ -22,14 +22,11 @@ class SysTrayWidget(QWidget):
         # 配置系统托盘图标
         self.__tray_icon = QSystemTrayIcon(self)
         self.__tray_icon.setIcon(QIcon(":/icons/sysTrayIcon.svg"))
-
         # 显示托盘
         # 一定要放在其它配置之前
         self.__tray_icon.show()
-
         # 配置托盘图标提示
         self.__tray_icon.setToolTip("PyQtSS")
-
         # 创建托盘的右键菜单
         self.__tray_menu = QMenu(self)
         self.add_tray_menu_action("主界面", self.action_show_userinterface)
