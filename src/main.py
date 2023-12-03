@@ -1,7 +1,6 @@
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from sysTray import SysTrayWidget
-from daemon import supervisor
 # import ui_untitled
 
 
@@ -28,7 +27,6 @@ if __name__ == "__main__":
     # 创建系统托盘项目
     # tray = MySysTrayWidget(app=app, window=win, ui=ui)
     tray = SysTrayWidget(app=app, window=QMainWindow())
-    d = supervisor()
 
     # 显示窗口
     # win.show()

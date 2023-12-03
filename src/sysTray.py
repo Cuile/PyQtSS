@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QSystemTrayIcon, QMenu, QWidget, QApplication, QMainWindow
 from PySide6.QtGui import QIcon, QAction
 from resources import res_rc  # 由pyside6-rcc生成的资源文件  # noqa: F401
+from daemon import supervisor, rpc
 
 
 # 系统托盘
@@ -38,7 +39,7 @@ class SysTrayWidget(QWidget):
         self.__tray_menu.addSeparator()
         self.add_tray_menu_action("关闭代理模式", self.show_userinterface)
         self.add_tray_menu_action("网络直通模式", self.show_userinterface)
-        self.add_tray_menu_action("软件PAC模式", self.show_userinterface)
+        self.add_tray_menu_action("软件PAC模式", self.software_pac_proxy)
         self.add_tray_menu_action("系统PAC模式", self.show_userinterface)
         self.add_tray_menu_action("全局代理模式", self.show_userinterface)
         self.__tray_menu.addSeparator()
@@ -62,6 +63,11 @@ class SysTrayWidget(QWidget):
         # 默认隐藏界面
         self.hide_userinterface()
 
+        daemon = supervisor()
+        daemon.start()
+        # xml-rpc
+        self.__daemon = rpc()
+
     def add_tray_menu_action(
         self, text: str = "empty", callback: object = None
     ) -> None:
@@ -71,8 +77,16 @@ class SysTrayWidget(QWidget):
         self.__tray_menu_action.append(a)
 
     def quit(self) -> None:
+        # 关闭所有进程
+        self.__daemon.rpc.supervisor.stopAllProcesses(True)
+        # 关闭守护进程
+        self.__daemon.rpc.supervisor.shutdown()
         # 真正的退出
         self.__app.exit()
+
+    def software_pac_proxy(self) -> None:
+        # 启动所有进程
+        self.__daemon.rpc.supervisor.startAllProcesses(True)
 
     def show_userinterface(self) -> None:
         # self.__window.show()
