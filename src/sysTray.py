@@ -79,7 +79,8 @@ class SysTrayWidget(QWidget):
         pass
 
     def action_close_proxy(self) -> None:
-        pass
+        # 关闭所有进程
+        self.__daemon.rpc.supervisor.stopAllProcesses(True)
 
     def action_software_pac_proxy(self) -> None:
         # 启动所有进程
