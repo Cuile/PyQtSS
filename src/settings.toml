@@ -12,9 +12,14 @@ conf = "./config/supervisor.ini"
 [privoxy]
 path = './bin/privoxy'
 bin = "privoxy.exe"
-conf = './config/'
+conf = './config/privoxy.conf'
 
 [ss-rust]
 path = './bin/ss-rust'
 bin = "sslocal.exe"
-conf = './config/'
+conf = './config/ss-rust.json'
+
+[nginx]
+path = './bin/nginx'
+bin = 'nginx.exe'
+conf = './config/nginx.conf'
